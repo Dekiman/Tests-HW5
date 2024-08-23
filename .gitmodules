@@ -1,0 +1,6 @@
+[submodule "TechnionMatam"]
+	path = TechnionMatam
+	url = git@github.com:PNone/TechnionMatam.git
+[submodule "MatamGenericTester"]
+	path = MatamGenericTester
+	url = git@github.com:PNone/MatamGenericTester.git

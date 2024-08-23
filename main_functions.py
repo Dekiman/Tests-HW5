@@ -1,6 +1,5 @@
-from enigma import Enigma, EMPTY_STRING
+from enigma import Enigma, EMPTY_STRING, JSONFileError
 import json
-from json_file_error import JSONFileError
 
 # ================================================================================================
 
@@ -13,6 +12,7 @@ Params:
 Returns:
       Enigma - an enigma mechine object
 """
+
 
 def load_enigma_from_path(path: str): 
     try:
@@ -62,6 +62,7 @@ Returns:
   dict args_dict: a dictionary with file extentions as keys and and file paths as values
 """
 
+
 def parse_command_to_dict(command: list):
     
     args_dict = {} # crate an empty dictionary
@@ -69,8 +70,10 @@ def parse_command_to_dict(command: list):
     # Parsing the command by flags associated
     skip_next = False  # Flag to skip the next iteration when needed
     for i in range(len(command)):
-        i += 1 # starting i from 1 to avoid .py script as it is always the first one
-        if skip_next: 
+        if i == 0:
+            continue
+
+        if skip_next:
             skip_next = False 
             continue
 
@@ -80,7 +83,7 @@ def parse_command_to_dict(command: list):
         elif command[i] == '-i': 
             args_dict['in'] = command[i + 1] # an input file comes after -i flag
             skip_next = True # skip the input file argument
-        elif command == '-o':
+        elif command[i] == '-o':
             args_dict['out'] = command[i + 1] # an output file comes after -o flag
             skip_next = True # skip the json file argument
 
@@ -98,13 +101,14 @@ Returns:
       void
 """
 
+
 def write_to_file(output_file_path, data):
     try:
         with open(output_file_path, 'w') as out_file:
             out_file.write(data)
 
     except Exception:
-        print("The enigma script has encountered an error") # Error opening the output file
+        print("The enigma script has encountered an error") # Error opening\writing to the output file
         exit(1)
 
 

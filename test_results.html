@@ -1,0 +1,230 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+<body>
+
+
+    <h2><span style="color:red;">9 Failed</span> out of 16</h2>
+        <button type="button" class="collapsible" style="color:red">
+        No Input Flag Test</button>
+<div class="content">
+  <p>Test Command:</p><code>export TESTER_TMP_PWD=$(pwd) && cd ./TechnionMatam/HW5/tests &&  /usr/bin/python3 /mnt/c/Users/USER/Desktop/Redisign/enigma.py -c example_config_file.json -o noInputFlagDummy.out &gt; noInputFlag.out 2&gt;&1 && cd $TESTER_TMP_PWD && unset TESTER_TMP_PWD</code>
+  <p><p>No Input Flag Test - Failed!</p><div class="grid-container-element"><div class="grid-child-element"><p>Expected Output:</p><p>Usage: python3 enigma.py -c &lt;config_file&gt; -i &lt;input_file&gt; -o &lt;output_file&gt;</p></div><div class="grid-child-element"><p>Actual Output:</p><p>Traceback (most recent call last):<br/>  File "/mnt/c/Users/USER/Desktop/Redisign/enigma.py", line 135, in &lt;module&gt;<br/>    main()<br/>  File "/mnt/c/Users/USER/Desktop/Redisign/main.py", line 10, in main<br/>    if path_dict['json'] == EMPTY_STRING or path_dict['in'] == EMPTY_STRING:<br/>KeyError: 'in'</p></div></div></p>
+</div>
+
+        <button type="button" class="collapsible" style="color:red">
+        No Config Flag Test</button>
+<div class="content">
+  <p>Test Command:</p><code>export TESTER_TMP_PWD=$(pwd) && cd ./TechnionMatam/HW5/tests &&  /usr/bin/python3 /mnt/c/Users/USER/Desktop/Redisign/enigma.py -i example1.in &gt; noConfigFlag.out 2&gt;&1 && cd $TESTER_TMP_PWD && unset TESTER_TMP_PWD</code>
+  <p><p>No Config Flag Test - Failed!</p><div class="grid-container-element"><div class="grid-child-element"><p>Expected Output:</p><p>Usage: python3 enigma.py -c &lt;config_file&gt; -i &lt;input_file&gt; -o &lt;output_file&gt;</p></div><div class="grid-child-element"><p>Actual Output:</p><p>Traceback (most recent call last):<br/>  File "/mnt/c/Users/USER/Desktop/Redisign/enigma.py", line 135, in &lt;module&gt;<br/>    main()<br/>  File "/mnt/c/Users/USER/Desktop/Redisign/main.py", line 10, in main<br/>    if path_dict['json'] == EMPTY_STRING or path_dict['in'] == EMPTY_STRING:<br/>KeyError: 'json'</p></div></div></p>
+</div>
+
+        <button type="button" class="collapsible" style="color:red">
+        Test invalid config file</button>
+<div class="content">
+  <p>Test Command:</p><code>export TESTER_TMP_PWD=$(pwd) && cd ./TechnionMatam/HW5/tests &&  /usr/bin/python3 /mnt/c/Users/USER/Desktop/Redisign/enigma.py -c invalid_config_file.json -i example2.in &gt; invalidConfig.out 2&gt;&1 && cd $TESTER_TMP_PWD && unset TESTER_TMP_PWD</code>
+  <p><p>Test invalid config file - Failed!</p><div class="grid-container-element"><div class="grid-child-element"><p>Expected Output:</p><p>The enigma script has encountered an error</p></div><div class="grid-child-element"><p>Actual Output:</p><p>Traceback (most recent call last):<br/>  File "/mnt/c/Users/USER/Desktop/Redisign/main_functions.py", line 20, in load_enigma_from_path<br/>    data = json.load(file)<br/>  File "/usr/lib/python3.10/json/__init__.py", line 293, in load<br/>    return loads(fp.read(),<br/>  File "/usr/lib/python3.10/json/__init__.py", line 346, in loads<br/>    return _default_decoder.decode(s)<br/>  File "/usr/lib/python3.10/json/decoder.py", line 337, in decode<br/>    obj, end = self.raw_decode(s, idx=_w(s, 0).end())<br/>  File "/usr/lib/python3.10/json/decoder.py", line 353, in raw_decode<br/>    obj, end = self.scan_once(s, idx)<br/>json.decoder.JSONDecodeError: Expecting property name enclosed in double quotes: line 7 column 3 (char 260)<br/>During handling of the above exception, another exception occurred:<br/>Traceback (most recent call last):<br/>  File "/mnt/c/Users/USER/Desktop/Redisign/enigma.py", line 135, in &lt;module&gt;<br/>    main()<br/>  File "/mnt/c/Users/USER/Desktop/Redisign/main.py", line 13, in main<br/>    enigma_encrypter = load_enigma_from_path(path_dict['json'])<br/>  File "/mnt/c/Users/USER/Desktop/Redisign/main_functions.py", line 22, in load_enigma_from_path<br/>    raise JSONFileError() # JSON file loading unseccessful<br/>json_file_error.JSONFileError</p></div></div></p>
+</div>
+
+        <button type="button" class="collapsible" style="color:green">
+        Test Flags in Different Order</button>
+<div class="content">
+  
+  <p><p>
+Test Flags in Different Order - Passed!
+</p><div class="grid-container-element"></div></p>
+</div>
+
+        <button type="button" class="collapsible" style="color:green">
+        Different Config Test</button>
+<div class="content">
+  
+  <p><p>
+Different Config Test - Passed!
+</p><div class="grid-container-element"></div></p>
+</div>
+
+        <button type="button" class="collapsible" style="color:red">
+        Invalid Enigma Arg</button>
+<div class="content">
+  <p>Test Command:</p><code>export TESTER_TMP_PWD=$(pwd) && cd ./TechnionMatam/HW5/tests &&  /usr/bin/python3 /mnt/c/Users/USER/Desktop/Redisign/enigma.py -c example_config_file.json -l invalidFlagL -i example4.in -o invalidArgDummy.out  &gt; invalidArg.out 2&gt;&1 && cd $TESTER_TMP_PWD && unset TESTER_TMP_PWD</code>
+  <p><p>Invalid Enigma Arg - Failed!</p><div class="grid-container-element"><div class="grid-child-element"><p>Expected Output:</p><p>Usage: python3 enigma.py -c &lt;config_file&gt; -i &lt;input_file&gt; -o &lt;output_file&gt;</p></div><div class="grid-child-element"><p>Actual Output:</p><p></p></div></div></p>
+</div>
+
+        <button type="button" class="collapsible" style="color:green">
+        Missimg Input File Test</button>
+<div class="content">
+  
+  <p><p>
+Missimg Input File Test - Passed!
+</p><div class="grid-container-element"></div></p>
+</div>
+
+        <button type="button" class="collapsible" style="color:red">
+        Missimg Config File Test</button>
+<div class="content">
+  <p>Test Command:</p><code>export TESTER_TMP_PWD=$(pwd) && cd ./TechnionMatam/HW5/tests &&  /usr/bin/python3 /mnt/c/Users/USER/Desktop/Redisign/enigma.py -c InvalidFilePath.json -i example4.in &gt; missingConfigFile.out 2&gt;&1 && cd $TESTER_TMP_PWD && unset TESTER_TMP_PWD</code>
+  <p><p>Missimg Config File Test - Failed!</p><div class="grid-container-element"><div class="grid-child-element"><p>Expected Output:</p><p>The enigma script has encountered an error</p></div><div class="grid-child-element"><p>Actual Output:</p><p>Traceback (most recent call last):<br/>  File "/mnt/c/Users/USER/Desktop/Redisign/main_functions.py", line 19, in load_enigma_from_path<br/>    with open(path, 'r') as file:<br/>FileNotFoundError: [Errno 2] No such file or directory: 'InvalidFilePath.json'<br/>During handling of the above exception, another exception occurred:<br/>Traceback (most recent call last):<br/>  File "/mnt/c/Users/USER/Desktop/Redisign/enigma.py", line 135, in &lt;module&gt;<br/>    main()<br/>  File "/mnt/c/Users/USER/Desktop/Redisign/main.py", line 13, in main<br/>    enigma_encrypter = load_enigma_from_path(path_dict['json'])<br/>  File "/mnt/c/Users/USER/Desktop/Redisign/main_functions.py", line 22, in load_enigma_from_path<br/>    raise JSONFileError() # JSON file loading unseccessful<br/>json_file_error.JSONFileError</p></div></div></p>
+</div>
+
+        <button type="button" class="collapsible" style="color:green">
+        Example Test 1</button>
+<div class="content">
+  
+  <p><p>
+Example Test 1 - Passed!
+</p><div class="grid-container-element"></div></p>
+</div>
+
+        <button type="button" class="collapsible" style="color:green">
+        Example Test 2</button>
+<div class="content">
+  
+  <p><p>
+Example Test 2 - Passed!
+</p><div class="grid-container-element"></div></p>
+</div>
+
+        <button type="button" class="collapsible" style="color:green">
+        Example Test 3</button>
+<div class="content">
+  
+  <p><p>
+Example Test 3 - Passed!
+</p><div class="grid-container-element"></div></p>
+</div>
+
+        <button type="button" class="collapsible" style="color:green">
+        Example Test 4</button>
+<div class="content">
+  
+  <p><p>
+Example Test 4 - Passed!
+</p><div class="grid-container-element"></div></p>
+</div>
+
+        <button type="button" class="collapsible" style="color:red">
+        Example Test Using stdout 1</button>
+<div class="content">
+  <p>Test Command:</p><code>export TESTER_TMP_PWD=$(pwd) && cd ./TechnionMatam/HW5/tests &&  /usr/bin/python3 /mnt/c/Users/USER/Desktop/Redisign/enigma.py -c example_config_file.json -i example1.in &gt; exampleStdOut1.out && cd $TESTER_TMP_PWD && unset TESTER_TMP_PWD</code>
+  <p><p>Example Test Using stdout 1 - Failed!</p><div class="grid-container-element"><div class="grid-child-element"><p>Expected Output:</p><p>t</p></div><div class="grid-child-element"><p>Actual Output:</p><p></p></div></div></p>
+</div>
+
+        <button type="button" class="collapsible" style="color:red">
+        Example Test Using stdout 2</button>
+<div class="content">
+  <p>Test Command:</p><code>export TESTER_TMP_PWD=$(pwd) && cd ./TechnionMatam/HW5/tests &&  /usr/bin/python3 /mnt/c/Users/USER/Desktop/Redisign/enigma.py -c example_config_file.json -i example2.in &gt; exampleStdOut2.out && cd $TESTER_TMP_PWD && unset TESTER_TMP_PWD</code>
+  <p><p>Example Test Using stdout 2 - Failed!</p><div class="grid-container-element"><div class="grid-child-element"><p>Expected Output:</p><p>m<br/>c<br/>b<br/>q</p></div><div class="grid-child-element"><p>Actual Output:</p><p></p></div></div></p>
+</div>
+
+        <button type="button" class="collapsible" style="color:red">
+        Example Test Using stdout 3</button>
+<div class="content">
+  <p>Test Command:</p><code>export TESTER_TMP_PWD=$(pwd) && cd ./TechnionMatam/HW5/tests &&  /usr/bin/python3 /mnt/c/Users/USER/Desktop/Redisign/enigma.py -c example_config_file.json -i example3.in &gt; exampleStdOut3.out && cd $TESTER_TMP_PWD && unset TESTER_TMP_PWD</code>
+  <p><p>Example Test Using stdout 3 - Failed!</p><div class="grid-container-element"><div class="grid-child-element"><p>Expected Output:</p><p>hr<br/>hrlz</p></div><div class="grid-child-element"><p>Actual Output:</p><p></p></div></div></p>
+</div>
+
+        <button type="button" class="collapsible" style="color:red">
+        Example Test Using stdout 4</button>
+<div class="content">
+  <p>Test Command:</p><code>export TESTER_TMP_PWD=$(pwd) && cd ./TechnionMatam/HW5/tests &&  /usr/bin/python3 /mnt/c/Users/USER/Desktop/Redisign/enigma.py -c example_config_file.json -i example4.in &gt; exampleStdOut4.out && cd $TESTER_TMP_PWD && unset TESTER_TMP_PWD</code>
+  <p><p>Example Test Using stdout 4 - Failed!</p><div class="grid-container-element"><div class="grid-child-element"><p>Expected Output:</p><p><br/>n e j b k</p></div><div class="grid-child-element"><p>Actual Output:</p><p></p></div></div></p>
+</div>
+
+</body>
+</html>
+<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.display === "block") {
+      content.style.display = "none";
+    } else {
+      content.style.display = "block";
+    }
+  });
+}
+</script>
+<style>
+.collapsible {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  border: none;
+  text-align: left;
+  outline: none;
+  font-size: 15px;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+.active, .collapsible:hover {
+  background-color: #ccc;
+}
+
+/* Style the collapsible content. Note: hidden by default */
+.content {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: #f1f1f1;
+}
+.collapsible:after {
+  content: '\02795'; /* Unicode character for "plus" sign (+) */
+  font-size: 13px;
+  color: white;
+  float: right;
+  margin-left: 5px;
+}
+
+.active:after {
+  content: "\2796"; /* Unicode character for "minus" sign (-) */
+}
+</style>
+<style>
+.content {
+  padding: 0 18px;
+  background-color: white;
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.2s ease-out;
+}
+</style>
+<style>
+.grid-container-element { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    grid-gap: 20px; 
+    width: 80%; 
+} 
+.grid-child-element { 
+    margin: 10px; 
+    border: 1px solid red; 
+}
+</style>
+
+<script>
+var coll = document.getElementsByClassName("collapsible");
+var i;
+
+for (i = 0; i < coll.length; i++) {
+  coll[i].addEventListener("click", function() {
+    this.classList.toggle("active");
+    var content = this.nextElementSibling;
+    if (content.style.maxHeight){
+      content.style.maxHeight = null;
+    } else {
+      content.style.maxHeight = content.scrollHeight + "px";
+    }
+  });
+}
+</script>
+    

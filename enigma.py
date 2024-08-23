@@ -1,5 +1,7 @@
 
 from json_file_error import JSONFileError
+from main import *
+
 #Constents
 FIRST_WHEEL_MAX = 8
 ABC_SIZE = 26
@@ -16,52 +18,83 @@ EMPTY_STRING = ''
 
 #Enigma Class
 class Enigma:
-    # Constructor, initializing an Enigma instance
-    # Params:  
-    #   hash_map - Dictionary
-    #   wheels - List
-    #   reflector_map - Dictiona            
-    #
+
+    """
+    Constructor
+
+    Params:  
+        dict hash_map: an encryption hash map 
+        list wheels: values for the three wheels
+        dict reflector_map: an encryption reflector map       
+    """
     def __init__(self, hash_map: dict, wheels: list, reflector_map: dict):
         self.hash_map = hash_map
         self.wheels = wheels
         self.reflector_map = reflector_map
+   
+    #==============================================================================================
+    
+    """
+    Method Usage: Rotate the wheels based on given conditions
+    
+    Params: 
+            int encrypted_char_count: number of already encrypted charecters
+            list wheels: wheels to encrypt by 
+    
+    Returns:
+            void
+    """
+     
 
-    # A funtion to rotate the wheels based on given conditions
-    def rotate_wheels(self, encrypted_char_count, wheels_copy):
-        wheels_copy[FIRST_WHEEL] += 1
-        if wheels_copy[FIRST_WHEEL] > FIRST_WHEEL_MAX: # If wheel_1 one is over 8, set it to 1
-            wheels_copy[FIRST_WHEEL] = 1
+    def rotate_wheels(self, encrypted_char_count, wheels):
+        wheels[FIRST_WHEEL] += 1
+        if wheels[FIRST_WHEEL] > FIRST_WHEEL_MAX: # If wheel_1 one is over 8, set it to 1
+            wheels[FIRST_WHEEL] = 1
 
         if encrypted_char_count % SECOND_WHEEL_MODULO_2 == 0: 
-            wheels_copy[SECOND_WHEEL] *= 2 # If encrypted char count is even, multiply wheel_2 by 2
+            wheels[SECOND_WHEEL] *= 2 # If encrypted char count is even, multiply wheel_2 by 2
         else:
-            wheels_copy[SECOND_WHEEL] -= 1 # Else, decrease wheel_2 by 1
+            wheels[SECOND_WHEEL] -= 1 # Else, decrease wheel_2 by 1
 
         if encrypted_char_count % THIRD_WHEEL_MODULO_10 == 0:  
-            wheels_copy[THIRD_WHEEL] = THIRD_WHEEL_MAX # If wheel_3 is divisible by 10, set it to 10
+            wheels[THIRD_WHEEL] = THIRD_WHEEL_MAX # If wheel_3 is divisible by 10, set it to 10
         elif encrypted_char_count % THIRD_WHEEL_MODULO_3 == 0:
-            wheels_copy[THIRD_WHEEL] = THIRD_WHEEL_MID # Elif wheel_3 is divisible by 3, set it to 5
+            wheels[THIRD_WHEEL] = THIRD_WHEEL_MID # Elif wheel_3 is divisible by 3, set it to 5
         else:
-            wheels_copy[THIRD_WHEEL] = THIRD_WHEEL_MIN # Else, not divisible by 10 or 3, set it to 0
+            wheels[THIRD_WHEEL] = THIRD_WHEEL_MIN # Else, not divisible by 10 or 3, set it to 0
 
-    # A function to reverse search hash_map dictionary, give a key and get value
-    # Params:
-    #   value
-    # Returns:
-    #   string - the correspending key for the value
-    #    
+    #==============================================================================================
+    
+    """
+    Method Usage: Reverse search hash_map dictionary, give a key and get value
+
+    Params:
+            str value: a value to find the key to
+
+    Returns:
+            str map_key: the correspending key for the value
+    """
+
+
     def find_key_in_map(self, value: str):
         for map_key, map_value in self.hash_map.items():
             if map_value == value:
                 return map_key
         raise JSONFileError() # If here, the given key was not found in hash_map, and the JSON file invalid
 
-    # A function to encrypt a string message
-    # Parsms:
-    #   a message to encrypt
-    # Returns
-    #   string - encrypted message
+    #==============================================================================================
+
+    """
+    Method Usage: Encrypt a string message
+    
+    Parsms:
+            str message: a message to encrypt
+    Returns
+            str encrypted_string: the enceypted message
+    
+    """
+
+
     def encrypt_message(self, message: str):
         encrypted_string = EMPTY_STRING # Initializing empty encrypyerd string
         encrypted_char_count = 0 
@@ -102,3 +135,6 @@ class Enigma:
 
         return encrypted_string
 
+
+if __name__ == '__main__':
+    main()
